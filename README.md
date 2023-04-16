@@ -10,8 +10,8 @@ fail with a `TimeoutError` due to the event loop being closed.
 ## How to run:
 
 ```shell
-dockercompose build
-docker compose run app
+docker compose build
+docker compose run app pytest example_app/tests/test_reproduce.py::TestChatCommunicator::test_reproduce_exception example_app/tests/test_reproduce.py::TestChatCommunicator::test_reproduce_ok --reuse-db
 ```
 
 The expected output is to see both tests passed. The observed output, however, is a timeout error:

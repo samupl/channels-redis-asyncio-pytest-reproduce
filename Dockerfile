@@ -11,4 +11,6 @@ RUN pipenv install --dev --system --ignore-pipfile
 ADD . .
 
 RUN python --version
-ENTRYPOINT ["pytest", "example_app/tests/test_reproduce.py::TestChatCommunicator::test_reproduce_exception", "example_app/tests/test_reproduce.py::TestChatCommunicator::test_reproduce_ok", "--reuse-db"]
+#ENTRYPOINT ["pytest", "example_app/tests/test_reproduce.py::TestChatCommunicator::test_reproduce_exception", "example_app/tests/test_reproduce.py::TestChatCommunicator::test_reproduce_ok", "--reuse-db"]
+#ENTRYPOINT ["bash"]
+CMD ["bash"]
