@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+channels-redis = "*"
+pytest = "*"
+pytest-asyncio = "*"
+pytest-django = "*"
+channels = {extras = ["daphne"], version = "*"}
+django-redis = "*"
+pytest-xdist = "*"
+pytest-sugar = "*"
+python-decouple = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
