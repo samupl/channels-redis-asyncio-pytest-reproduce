@@ -9,27 +9,6 @@ from channels_pytest_issue.routing import application
 
 
 class QSWebsocketCommunicator(WebsocketCommunicator):
-    def __init__(self, application, path, headers=None, subprotocols=None,
-                 query_string: Optional[Union[str, bytes]]=None):
-        if isinstance(query_string, str):
-            query_string = str.encode(query_string)
-        self.scope = {
-            'type': 'websocket',
-            'path': path,
-            'headers': headers or [],
-            'subprotocols': subprotocols or [],
-            'query_string': query_string or '',
-        }
-        ApplicationCommunicator.__init__(self, application, self.scope)
-
-    async def join_huddle(self, huddle_id: int, *, wait_for_response=False):
-        await self.send_json_to({
-            'command': 'join',
-            'huddle': huddle_id,
-        })
-        if wait_for_response:
-            assert (await self.receive_json_from())['meta']
-
     async def receive_json_from(self, timeout=1, msg_type=None) -> dict:
         message = await super().receive_json_from(timeout)
         if msg_type is not None:
@@ -54,11 +33,11 @@ async def connected_communicator():
     await communicator.disconnect()
 
 
-@pytest.fixture(scope="session")
-def event_loop():
-    try:
-        loop = asyncio.get_running_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-    yield loop
-    loop.close()
+# @pytest.fixture(scope="session")
+# def event_loop():
+#     try:
+#         loop = asyncio.get_running_loop()
+#     except RuntimeError:
+#         loop = asyncio.new_event_loop()
+#     yield loop
+#     loop.close()
