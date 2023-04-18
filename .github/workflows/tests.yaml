@@ -1,0 +1,30 @@
+name: Test suite (issue reproduction)
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      uses: VaultVulp/action-pipenv@v2.0.1
+      with:
+        command: install -d
+
+    - name: Run tests
+      run: pytest example_app/tests/test_reproduce.py::TestChatCommunicator::test_reproduce_exception example_app/tests/test_reproduce.py::TestChatCommunicator::test_reproduce_ok
+
