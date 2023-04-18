@@ -25,6 +25,7 @@ class ExampleConsumer(AsyncJsonWebsocketConsumer):
 
     async def connect(self):
         await self.channel_layer.group_add('test', self.channel_name)
+        await super().connect()
 
     async def disconnect(self, code):
         await self.channel_layer.group_discard('test', self.channel_name)
