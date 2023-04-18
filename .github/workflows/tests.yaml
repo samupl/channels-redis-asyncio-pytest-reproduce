@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       uses: VaultVulp/action-pipenv@v2.0.1
       with:
-        command: install -d
+        command: install --dev --system --ignore-pipfile
 
     - name: Run tests
       run: pytest example_app/tests/test_reproduce.py::TestChatCommunicator::test_reproduce_exception example_app/tests/test_reproduce.py::TestChatCommunicator::test_reproduce_ok
