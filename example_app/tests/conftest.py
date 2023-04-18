@@ -5,7 +5,7 @@ import pytest
 import pytest_asyncio
 from channels.testing import WebsocketCommunicator, ApplicationCommunicator
 
-from channels_pytest_issue.routing import application
+from channels_pytest_issue.asgi import application
 
 
 class QSWebsocketCommunicator(WebsocketCommunicator):
